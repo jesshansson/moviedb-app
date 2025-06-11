@@ -1,18 +1,20 @@
 const express = require("express");
 const app = express();
 const PORT = 5000;
+const cors = require("cors");
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World från backend!");
 });
 
-const filmer = [
-  { id: 1, titel: "Inception", beskrivning: "Drömmar och hemligheter." },
-  { id: 2, titel: "Titanic", beskrivning: "Isberg, kärlek och drama." },
+const movies = [
+  { id: 1, title: "Inception", description: "Drömmar och hemligheter." },
+  { id: 2, title: "Titanic", description: "Isberg, kärlek och drama." },
 ];
 
-app.get("/api/filmer", (req, res) => {
-  res.json(filmer);
+app.get("/api/movies", (req, res) => {
+  res.json(movies);
 });
 
 app.listen(PORT, () => {
