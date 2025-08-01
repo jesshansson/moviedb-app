@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const cors = require("cors");
 
 const app = express();
@@ -52,4 +52,21 @@ app.post("/api/movies", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servern körs på port ${PORT}`);
+});
+
+// Delete a movie by id
+app.delete("/api/movies/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const result = await moviesCollection.deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 1) {
+      res.json({ message: "Movie deleted" });
+    } else {
+      res.status(404).json({ error: "Movie not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: "Error deleting movie" });
+  }
 });

@@ -24,7 +24,7 @@ function AddMovieForm({ onAdd }: AddMovieFormProps) {
     if (res.ok) {
       setTitle("");
       setDescription("");
-      onAdd && onAdd(); // Om du vill uppdatera listan automatiskt
+      onAdd && onAdd();
     } else {
       alert("Något gick fel!");
     }
