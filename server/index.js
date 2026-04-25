@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 const cors = require("cors");
@@ -9,8 +10,8 @@ app.use(express.json());
 const PORT = 5000;
 
 // Connect to MongoDB
-const uri =
-  "mongodb+srv://jessicahansson:rcumR1gkB9F5RW3N@movie-database.kcxxvp4.mongodb.net/?retryWrites=true&w=majority&appName=movie-database";
+const uri = process.env.MONGO_URI;
+const PORT = process.env.PORT || 5000;
 const client = new MongoClient(uri);
 
 let moviesCollection;
